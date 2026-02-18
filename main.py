@@ -1,3 +1,8 @@
+def get_todos():
+    with open("todos.txt", "r") as file:
+        todos = file.readlines()
+    return todos
+
 # runs indefinitely until the user types "exit"
 while True:
 
@@ -10,9 +15,8 @@ while True:
         # Get the new todo from user, append newline for file formatting
         todo = user_action[4:] + "\n"
 
-        # read all existing todos from file
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
+
         todos.append(todo)
 
         # append the new todo to the list and overwrite the file
@@ -21,9 +25,9 @@ while True:
 
     # show all todos
     elif user_action.startswith("show"):
-        # Read all todos from file
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+
+        # open and read the txt file
+        todos = get_todos()
 
         # strip trailing newline characters from each todo for clean display
         refactored_todos = []
@@ -43,8 +47,7 @@ while True:
             number = number - 1
 
             # open and read the txt file
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             # replace the selected todo in the list
             new_todo = input("Enter new todo:")
@@ -53,7 +56,7 @@ while True:
             #write edited todos to the txt file
             with open("todos.txt", "w") as file:
                 file.writelines(todos)
-        except ValueError:
+        except (IndexError, ValueError):
             print("Your command is not valid")
             continue
 
@@ -63,9 +66,9 @@ while True:
             # get which todo to remove
             number = int(user_action[9:])
 
-            #open the file
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            # open and read the txt file
+            todos = get_todos()
+
             #defining internal working index
             index = number - 1
 
@@ -81,7 +84,7 @@ while True:
             #print out the removed todos
             message = f"Todo '{todo_to_remove}' was removed from the list."
             print(message)
-        except IndexError:
+        except (IndexError, ValueError):
             print("No such item with that number")
             continue
 
