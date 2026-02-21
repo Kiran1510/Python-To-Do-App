@@ -27,7 +27,7 @@ while True:
     elif user_action.startswith("show"):
 
         # open and read the txt file
-        todos = get_todos()
+        todos = get_todos("todos.txt")
 
         # strip trailing newline characters from each todo for clean display
         refactored_todos = []
@@ -47,7 +47,7 @@ while True:
             number = number - 1
 
             # open and read the txt file
-            todos = get_todos()
+            todos = get_todos("todos.txt")
 
             # replace the selected todo in the list
             new_todo = input("Enter new todo:")
@@ -67,7 +67,7 @@ while True:
             number = int(user_action[9:])
 
             # open and read the txt file
-            todos = get_todos()
+            todos = get_todos("todos.txt")
 
             #defining internal working index
             index = number - 1
