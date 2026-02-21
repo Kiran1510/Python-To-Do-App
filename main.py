@@ -1,7 +1,7 @@
-def get_todos():
-    with open("todos.txt", "r") as file:
-        todos = file.readlines()
-    return todos
+def get_todos(filepath):
+    with open(filepath, "r") as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
 
 # runs indefinitely until the user types "exit"
 while True:
@@ -15,7 +15,7 @@ while True:
         # Get the new todo from user, append newline for file formatting
         todo = user_action[4:] + "\n"
 
-        todos = get_todos()
+        todos = get_todos("todos.txt")
 
         todos.append(todo)
 
