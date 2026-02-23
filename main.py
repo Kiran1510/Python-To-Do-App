@@ -1,5 +1,8 @@
 from functions import *
+import time
 
+now = time.strftime("%b %d, %Y %H:%M %S")
+print("Its is", now)
 # Main application loop
 while True:
     user_action = input("Type add, show, edit, complete or exit:").strip()
